@@ -1,0 +1,82 @@
+2025-09-03 09:51:41.468 +03:00 [WRN] No store type was specified for the decimal property 'MaxKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.510 +03:00 [WRN] No store type was specified for the decimal property 'MinKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.512 +03:00 [WRN] No store type was specified for the decimal property 'CreditAmount' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.513 +03:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.515 +03:00 [WRN] No store type was specified for the decimal property 'AylikTaksit' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.516 +03:00 [WRN] No store type was specified for the decimal property 'FaizOrani' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.518 +03:00 [WRN] No store type was specified for the decimal property 'KrediTutari' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:51:41.519 +03:00 [WRN] No store type was specified for the decimal property 'ToplamOdeme' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-03 09:53:21.038 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 09:53:21.071 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 09:59:20.353 +03:00 [INF] HesaplaVeKaydet işlemi başlatıldı.
+2025-09-03 09:59:20.380 +03:00 [INF] Kredi hesaplama başlatıldı: Tutar=22500, Vade=24, FaizOranı=2.98
+2025-09-03 09:59:20.384 +03:00 [INF] Hesaplama tamamlandı: AylıkTaksit=1325.71, ToplamOdeme=31816.95
+2025-09-03 09:59:20.388 +03:00 [INF] Veritabanına kayıt ediliyor: Tutar=22500, Vade=24, Faiz=2.98, AylıkTaksit=1325.71
+2025-09-03 09:59:20.453 +03:00 [INF] Kayıt başarıyla tamamlandı.
+2025-09-03 10:07:06.369 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 10:07:06.381 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 10:07:55.721 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 10:08:04.188 +03:00 [INF] Login denemesi başlatıldı | Email=emirhanefegozpinar@gmail.com
+2025-09-03 10:08:04.683 +03:00 [INF] Login başarılı | UserId=1010 Email=emirhanefegozpinar@gmail.com
+2025-09-03 10:08:08.845 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 10:08:08.855 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 10:08:09.581 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 10:08:10.287 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 10:08:10.334 +03:00 [INF] Filtreli kampanyalar getirildi. Banka: Garanti Bankası, KrediTipi: 1, Eşleşen: 1
+2025-09-03 10:15:26.126 +03:00 [INF] Kullanıcının onaylı üyelikleri listelendi. UserId: 1010, Sayı: 3
+2025-09-03 10:15:26.568 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = emirhanefegozpinar@gmail.com
+2025-09-03 10:15:26.571 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = emirhanefegozpinar@gmail.com
+2025-09-03 10:15:26.573 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 1010
+2025-09-03 10:15:26.575 +03:00 [INF] [CLAIM] userId = 1010
+2025-09-03 10:15:26.576 +03:00 [INF] [CLAIM] firstName = Emirhan Efe
+2025-09-03 10:15:26.578 +03:00 [INF] [CLAIM] lastName = Gözpınar
+2025-09-03 10:15:26.579 +03:00 [INF] [CLAIM] http://schemas.microsoft.com/ws/2008/06/identity/claims/role = User
+2025-09-03 10:15:26.582 +03:00 [INF] [CLAIM] jti = b3cf1617-1552-4868-90c0-b188971a2b10
+2025-09-03 10:15:26.583 +03:00 [INF] [CLAIM] exp = 1756886884
+2025-09-03 10:15:26.585 +03:00 [INF] [CLAIM] iss = credit-calculator-api
+2025-09-03 10:15:26.587 +03:00 [INF] [CLAIM] aud = credit-calculator-client
+2025-09-03 10:15:26.589 +03:00 [INF] GetMyApplications çağrısı alındı. userId: 1010
+2025-09-03 10:15:26.598 +03:00 [INF] Kullanıcıya ait başvurular listelendi. UserId: 1010, Toplam: 4
+2025-09-03 10:15:26.628 +03:00 [INF] Kullanıcıya ait 4 başvuru bulundu.
+2025-09-03 10:15:26.654 +03:00 [INF] emirhanefegozpinar@gmail.com adresine ait 3 başvuru bulundu.
+2025-09-03 10:15:27.250 +03:00 [INF] emirhanefegozpinar@gmail.com kullanıcısının onaylı başvuruları getirildi. Sayı: 3
+2025-09-03 10:20:46.735 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = emirhanefegozpinar@gmail.com
+2025-09-03 10:20:46.737 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = emirhanefegozpinar@gmail.com
+2025-09-03 10:20:46.739 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 1010
+2025-09-03 10:20:46.740 +03:00 [INF] [CLAIM] userId = 1010
+2025-09-03 10:20:46.742 +03:00 [INF] [CLAIM] firstName = Emirhan Efe
+2025-09-03 10:20:46.743 +03:00 [INF] [CLAIM] lastName = Gözpınar
+2025-09-03 10:20:46.743 +03:00 [INF] emirhanefegozpinar@gmail.com adresine ait 3 başvuru bulundu.
+2025-09-03 10:20:46.744 +03:00 [INF] [CLAIM] http://schemas.microsoft.com/ws/2008/06/identity/claims/role = User
+2025-09-03 10:20:46.746 +03:00 [INF] [CLAIM] jti = b3cf1617-1552-4868-90c0-b188971a2b10
+2025-09-03 10:20:46.747 +03:00 [INF] [CLAIM] exp = 1756886884
+2025-09-03 10:20:46.747 +03:00 [INF] [CLAIM] iss = credit-calculator-api
+2025-09-03 10:20:46.749 +03:00 [INF] [CLAIM] aud = credit-calculator-client
+2025-09-03 10:20:46.750 +03:00 [INF] GetMyApplications çağrısı alındı. userId: 1010
+2025-09-03 10:20:46.754 +03:00 [INF] Kullanıcıya ait başvurular listelendi. UserId: 1010, Toplam: 4
+2025-09-03 10:20:46.759 +03:00 [INF] Kullanıcıya ait 4 başvuru bulundu.
+2025-09-03 10:20:47.359 +03:00 [INF] Kullanıcının onaylı üyelikleri listelendi. UserId: 1010, Sayı: 3
+2025-09-03 10:20:48.125 +03:00 [INF] emirhanefegozpinar@gmail.com kullanıcısının onaylı başvuruları getirildi. Sayı: 3
+2025-09-03 10:20:50.841 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = emirhanefegozpinar@gmail.com
+2025-09-03 10:20:50.845 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = emirhanefegozpinar@gmail.com
+2025-09-03 10:20:50.848 +03:00 [INF] emirhanefegozpinar@gmail.com adresine ait 3 başvuru bulundu.
+2025-09-03 10:20:50.849 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 1010
+2025-09-03 10:20:50.852 +03:00 [INF] [CLAIM] userId = 1010
+2025-09-03 10:20:50.853 +03:00 [INF] [CLAIM] firstName = Emirhan Efe
+2025-09-03 10:20:50.854 +03:00 [INF] [CLAIM] lastName = Gözpınar
+2025-09-03 10:20:50.855 +03:00 [INF] [CLAIM] http://schemas.microsoft.com/ws/2008/06/identity/claims/role = User
+2025-09-03 10:20:50.857 +03:00 [INF] [CLAIM] jti = b3cf1617-1552-4868-90c0-b188971a2b10
+2025-09-03 10:20:50.858 +03:00 [INF] [CLAIM] exp = 1756886884
+2025-09-03 10:20:50.860 +03:00 [INF] [CLAIM] iss = credit-calculator-api
+2025-09-03 10:20:50.861 +03:00 [INF] [CLAIM] aud = credit-calculator-client
+2025-09-03 10:20:50.863 +03:00 [INF] GetMyApplications çağrısı alındı. userId: 1010
+2025-09-03 10:20:50.871 +03:00 [INF] Kullanıcıya ait başvurular listelendi. UserId: 1010, Toplam: 4
+2025-09-03 10:20:50.895 +03:00 [INF] Kullanıcıya ait 4 başvuru bulundu.
+2025-09-03 10:23:23.811 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 10:23:23.813 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 10:23:24.895 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 10:38:33.333 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 12:25:29.693 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 12:25:29.717 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-03 16:32:00.437 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-03 16:32:00.478 +03:00 [INF] Toplam 4 kampanya bulundu.

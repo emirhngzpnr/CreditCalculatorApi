@@ -1,0 +1,18 @@
+
+rules:
+  - pattern: 'kafka\.server<type=ReplicaManager, name=UnderReplicatedPartitions><>Value'
+    name: kafka_under_replicated_partitions
+    type: GAUGE
+  - pattern: 'kafka\.controller<type=KafkaController, name=ActiveControllerCount><>Value'
+    name: kafka_active_controller_count
+    type: GAUGE
+  - pattern: 'kafka\.controller<type=KafkaController, name=OfflinePartitionsCount><>Value'
+    name: kafka_offline_partitions_count
+    type: GAUGE
+  - pattern: 'kafka\.server<type=BrokerTopicMetrics, name=BytesInPerSec><>OneMinuteRate'
+    name: kafka_broker_bytes_in_per_sec
+  - pattern: 'kafka\.server<type=BrokerTopicMetrics, name=BytesOutPerSec><>OneMinuteRate'
+    name: kafka_broker_bytes_out_per_sec
+  - pattern: 'kafka\.network<type=RequestMetrics, name=RequestsPerSec, request=(.+)><>OneMinuteRate'
+    name: kafka_requests_per_sec
+    labels: { request: "$1" }

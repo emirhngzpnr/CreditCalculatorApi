@@ -1,0 +1,103 @@
+﻿services:
+  zookeeper:
+    image: bitnami/zookeeper:3
+    container_name: zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - JVMFLAGS=-javaagent:/jmx/jmx_prometheus_javaagent.jar=5557:/jmx/zookeeper-jmx.yml
+    ports:
+      - "2181:2181"
+      - "5557:5557"   # JMX (ZK)
+    volumes:
+      - zookeeper_data:/bitnami/zookeeper
+      - "C:/Users/EMİRHAN/Desktop/staj-proje/monitoring/jmx:/jmx:ro"
+    networks:
+      - obs-net
+
+  kafka:
+    image: bitnami/kafka:3
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "5556:5556"   # JMX (Kafka)
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=INTERNAL://:29092,EXTERNAL://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_OPTS=-javaagent:/jmx/jmx_prometheus_javaagent.jar=5556:/jmx/kafka-jmx.yml
+    volumes:
+      - kafka_data:/bitnami/kafka
+      - "C:/Users/EMİRHAN/Desktop/staj-proje/monitoring/jmx:/jmx:ro"
+    networks:
+      - obs-net
+
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - obs-net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8080:8080"
+    environment:    
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    networks:
+      - obs-net
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    command: "redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}"
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "PING"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    networks: [obs-net]
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "5540:5540"
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [obs-net]
+volumes:
+  mongo_data:
+  zookeeper_data:
+  kafka_data:
+  redis_data:
+
+networks:
+  obs-net:
+    external: true
+    name: obs-net
+  

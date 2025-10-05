@@ -1,0 +1,158 @@
+groups:
+
+  - name: business_core_5m
+    interval: 30s
+    rules:
+      - record: r:credit:created:rate5m
+        expr: sum(rate(credit_applications_created_total[5m]))
+
+      - record: r:credit:created:rate30m
+        expr: sum(rate(credit_applications_created_total[30m]))
+
+      - record: r:credit:created:5m
+        expr: sum(increase(credit_applications_created_total[5m]))
+
+      - record: r:credit:created:30m
+        expr: sum(increase(credit_applications_created_total[30m]))
+
+      - record: r:customer:created:rate5m
+        expr: sum(rate(customer_applications_created_total[5m]))
+
+      - record: r:customer:created:5m
+        expr: sum(increase(customer_applications_created_total[5m]))
+
+      - record: r:customer:created:by_bank:5m
+        expr: sum by (bank) (increase(customer_applications_created_total[5m]))
+
+  - name: business_core_1d
+    interval: 1m
+    rules:
+      - record: r:credit:created:1d
+        expr: sum(increase(credit_applications_created_total[1d]))
+
+      - record: r:credit:approved:1d
+        expr: sum(increase(credit_applications_approved_total[1d]))
+
+      - record: r:credit:rejected:1d
+        expr: sum(increase(credit_applications_rejected_total[1d]))
+      
+      - record: r:credit:approved:by_bank:1d
+        expr: sum by (bank) (increase(credit_applications_approved_total[1d]))
+
+      - record: r:credit:approved:by_credit_type:1d
+        expr: sum by (credit_type) (increase(credit_applications_approved_total[1d]))
+
+      - record: r:credit:rejected:by_bank:1d
+        expr: sum by (bank) (increase(credit_applications_rejected_total[1d]))
+
+      - record: r:credit:created:by_bank:1d
+        expr: sum by (bank) (increase(credit_applications_created_total[1d])) 
+
+      - record: r:credit:created:by_credit_type:1d
+        expr: sum by (credit_type) (increase(credit_applications_created_total[1d]))
+
+      - record: r:credit:approval_rate:1d
+        expr: |
+          clamp_min(
+            sum(increase(credit_applications_approved_total[1d])) /
+            sum(increase(credit_applications_created_total[1d])),
+            0
+          )
+
+      - record: r:credit:reject_rate:1d
+        expr: |
+          clamp_min(
+            sum(increase(credit_applications_rejected_total[1d])) /
+            sum(increase(credit_applications_created_total[1d])),
+            0
+          )
+
+      - record: r:customer:created:1d
+        expr: sum(increase(customer_applications_created_total[1d]))
+
+      - record: r:customer:approved:1d
+        expr: sum(increase(customer_applications_approved_total[1d]))
+
+      - record: r:customer:rejected:1d
+        expr: sum(increase(customer_applications_rejected_total[1d]))
+
+      - record: r:customer:created:by_bank:1d
+        expr: sum by (bank) (increase(customer_applications_created_total[1d]))
+
+      - record: r:customer:approved:by_bank:1d
+        expr: sum by (bank) (increase(customer_applications_approved_total[1d]))
+
+      - record: r:customer:rejected:by_bank:1d
+        expr: sum by (bank) (increase(customer_applications_rejected_total[1d]))
+
+      - record: r:customer:approval_rate:1d
+        expr: |
+          clamp_min(
+            sum(increase(customer_applications_approved_total[1d]))
+            / sum(increase(customer_applications_created_total[1d])),
+            0
+          )
+
+      - record: r:customer:reject_rate:1d
+        expr: |
+          clamp_min(
+            sum(increase(customer_applications_rejected_total[1d]))
+            / sum(increase(customer_applications_created_total[1d])),
+            0
+          )
+
+  - name: business_core_10m
+    interval: 30s
+    rules:
+      - record: r:credit:approved:10m
+        expr: sum(increase(credit_applications_approved_total[10m]))
+
+      - record: r:credit:rejected:10m
+        expr: sum(increase(credit_applications_rejected_total[10m]))
+
+      - record: r:credit:approval_rate:10m
+        expr: >
+          sum(increase(credit_applications_approved_total[10m]))
+          / clamp_min(sum(increase(credit_applications_created_total[10m])), 1)
+
+      - record: r:credit:reject_rate:10m
+        expr: >
+          sum(increase(credit_applications_rejected_total[10m]))
+          / clamp_min(sum(increase(credit_applications_created_total[10m])), 1)
+
+      - record: r:credit:approved:by_bank:10m
+        expr: sum by (bank) (increase(credit_applications_approved_total[10m]))
+
+      - record: r:credit:rejected:by_bank:10m
+        expr: sum by (bank) (increase(credit_applications_rejected_total[10m]))
+
+      - record: r:credit:approved:by_credit_type:10m
+        expr: sum by (credit_type) (increase(credit_applications_approved_total[10m]))
+
+      - record: r:credit:rejected:by_credit_type:10m
+        expr: sum by (credit_type) (increase(credit_applications_rejected_total[10m]))
+
+      - record: r:customer:approved:10m
+        expr: sum(increase(customer_applications_approved_total[10m]))
+
+      - record: r:customer:rejected:10m
+        expr: sum(increase(customer_applications_rejected_total[10m]))
+
+      - record: r:customer:approval_rate:10m
+        expr: >
+          sum(increase(customer_applications_approved_total[10m]))
+          / clamp_min(sum(increase(customer_applications_created_total[10m])), 1)
+
+      - record: r:customer:reject_rate:10m
+        expr: >
+          sum(increase(customer_applications_rejected_total[10m]))
+          / clamp_min(sum(increase(customer_applications_created_total[10m])), 1)
+
+      - record: r:customer:created:by_bank:10m
+        expr: sum by (bank) (increase(customer_applications_created_total[10m]))
+
+      - record: r:customer:approved:by_bank:10m
+        expr: sum by (bank) (increase(customer_applications_approved_total[10m]))
+
+      - record: r:customer:rejected:by_bank:10m
+        expr: sum by (bank) (increase(customer_applications_rejected_total[10m]))

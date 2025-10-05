@@ -1,0 +1,112 @@
+{
+    "uid": "exec-biz-001",
+    "title": "00_Executive",
+    "tags": [ "business" ],
+    "schemaVersion": 39,
+    "version": 1,
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "panels": [
+        {
+            "id": 1,
+            "type": "stat",
+            "title": "Toplam Basvuru (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:created:1d"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "none",
+                    "decimals": 0
+                },
+                "overrides": []
+            },
+            "options": {
+                "reduceOptions": {
+                    "calcs": [ "lastNotNull" ],
+                    "values": false
+                }
+            }
+        },
+        {
+            "id": 2,
+            "type": "stat",
+            "title": "Onay Orani (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "100 * r:credit:approval_rate:1d"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "percent",
+                    "decimals": 0
+                },
+                "overrides": []
+            },
+            "options": {
+                "reduceOptions": {
+                    "calcs": [ "lastNotNull" ],
+                    "values": false
+                }
+            }
+        },
+        {
+            "id": 3,
+            "type": "timeseries",
+            "title": "Basvuru Hizi (rate5m)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 24,
+                "x": 0,
+                "y": 6
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:created:rate5m"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": { "decimals": 2 },
+                "overrides": []
+            }
+        },
+        {
+            "id": 4,
+            "type": "barchart",
+            "title": "Ilk 5 Banka (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "topk(5, r:credit:created:by_bank:1d)"
+                }
+            ],
+            "options": { "orientation": "horizontal" }
+        }
+    ],
+    "templating": { "list": [] },
+    "timepicker": {}
+}

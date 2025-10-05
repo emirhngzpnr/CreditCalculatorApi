@@ -1,0 +1,70 @@
+services:
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: prometheus
+    ports: ["9090:9090"]
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/rules:/etc/prometheus/rules:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-lifecycle
+    networks:
+      - obs-net
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports: ["3000:3000"]
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=emeydeneme1@gmail.com
+      - GF_SMTP_PASSWORD=ukuffcszyalpkdiw
+      - GF_SMTP_FROM_ADDRESS=emeydeneme1@gmail.com
+      - GF_SMTP_FROM_NAME=Grafana
+      - GF_SMTP_SKIP_VERIFY=true
+      - GF_SMTP_STARTTLS_POLICY=OpportunisticStartTLS
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/dashboards:/etc/grafana/dashboards:ro
+    networks:
+      - obs-net
+  mongodb-exporter:
+    image: percona/mongodb_exporter:0.40
+    container_name: mongodb-exporter
+    restart: unless-stopped
+    command:
+      - --mongodb.uri=mongodb://host.docker.internal:27017
+      - --compatible-mode
+    ports:
+      - "9216:9216"
+    networks:
+      - obs-net
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports: ["9100:9100"]
+    restart: unless-stopped
+    networks: [obs-net]
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: cadvisor
+    ports: ["8081:8080"]
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks: [obs-net]
+networks:
+  obs-net:
+    external: true
+    name: obs-net

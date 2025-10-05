@@ -1,0 +1,90 @@
+2025-09-04 09:35:51.930 +03:00 [WRN] No store type was specified for the decimal property 'MaxKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.984 +03:00 [WRN] No store type was specified for the decimal property 'MinKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.986 +03:00 [WRN] No store type was specified for the decimal property 'CreditAmount' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.988 +03:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.989 +03:00 [WRN] No store type was specified for the decimal property 'AylikTaksit' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.990 +03:00 [WRN] No store type was specified for the decimal property 'FaizOrani' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.991 +03:00 [WRN] No store type was specified for the decimal property 'KrediTutari' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 09:35:51.993 +03:00 [WRN] No store type was specified for the decimal property 'ToplamOdeme' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.919 +03:00 [WRN] No store type was specified for the decimal property 'MaxKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.963 +03:00 [WRN] No store type was specified for the decimal property 'MinKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.965 +03:00 [WRN] No store type was specified for the decimal property 'CreditAmount' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.967 +03:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.969 +03:00 [WRN] No store type was specified for the decimal property 'AylikTaksit' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.970 +03:00 [WRN] No store type was specified for the decimal property 'FaizOrani' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.977 +03:00 [WRN] No store type was specified for the decimal property 'KrediTutari' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:46:37.979 +03:00 [WRN] No store type was specified for the decimal property 'ToplamOdeme' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-04 14:47:06.570 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 14:47:06.597 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 14:52:23.091 +03:00 [INF] Login denemesi başlatıldı | Email=thoptimes21@gmail.com
+2025-09-04 14:52:23.760 +03:00 [INF] Login başarılı | UserId=1 Email=thoptimes21@gmail.com
+2025-09-04 14:52:44.209 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 14:52:48.050 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 14:55:59.738 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 14:58:38.372 +03:00 [INF] Toplam 5 kredi başvurusu bulundu.
+2025-09-04 14:58:49.326 +03:00 [INF] Başvuru durumu güncellendi. Id: 27, Yeni Durum: Reddedildi
+2025-09-04 14:58:51.986 +03:00 [INF] E-posta gönderildi: Alıcı=emeydeneme1@gmail.com, Konu=Kredi Başvuru Durumu
+2025-09-04 14:58:53.830 +03:00 [INF] Başvuru durumu güncellendi. Id: 26, Yeni Durum: Beklemede
+2025-09-04 14:58:56.112 +03:00 [INF] E-posta gönderildi: Alıcı=emirhanefegozpinar@gmail.com, Konu=Kredi Başvuru Durumu
+2025-09-04 15:37:12.833 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 15:37:12.855 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 15:55:12.638 +03:00 [INF] Şifre sıfırlama e-postası talebi | Email=thoptimes21@gmail.com
+2025-09-04 15:55:15.007 +03:00 [INF] E-posta gönderildi: Alıcı=thoptimes21@gmail.com, Konu=Şifre Sıfırlama
+2025-09-04 15:55:15.009 +03:00 [INF] Şifre sıfırlama e-postası gönderildi | UserId=1 Email=thoptimes21@gmail.com
+2025-09-04 16:05:54.430 +03:00 [INF] Login denemesi başlatıldı | Email=emirhanefegozpinar@gmail.com
+2025-09-04 16:05:54.606 +03:00 [INF] Login başarılı | UserId=1010 Email=emirhanefegozpinar@gmail.com
+2025-09-04 16:05:58.760 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:05:58.776 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:05:59.469 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:06:00.072 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:06:00.105 +03:00 [INF] Filtreli kampanyalar getirildi. Banka: Vakıfbank, KrediTipi: 1, Eşleşen: 1
+2025-09-04 16:11:08.818 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = emirhanefegozpinar@gmail.com
+2025-09-04 16:11:08.823 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = emirhanefegozpinar@gmail.com
+2025-09-04 16:11:08.825 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 1010
+2025-09-04 16:11:08.826 +03:00 [INF] [CLAIM] userId = 1010
+2025-09-04 16:11:08.828 +03:00 [INF] [CLAIM] firstName = Emirhan Efe
+2025-09-04 16:11:08.830 +03:00 [INF] [CLAIM] lastName = Gözpınar
+2025-09-04 16:11:08.832 +03:00 [INF] [CLAIM] http://schemas.microsoft.com/ws/2008/06/identity/claims/role = User
+2025-09-04 16:11:08.833 +03:00 [INF] [CLAIM] jti = c3655db3-5ae1-4bf8-832c-6ac380b1d91c
+2025-09-04 16:11:08.835 +03:00 [INF] [CLAIM] exp = 1756994754
+2025-09-04 16:11:08.836 +03:00 [INF] [CLAIM] iss = credit-calculator-api
+2025-09-04 16:11:08.838 +03:00 [INF] [CLAIM] aud = credit-calculator-client
+2025-09-04 16:11:08.840 +03:00 [INF] GetMyApplications çağrısı alındı. userId: 1010
+2025-09-04 16:11:08.854 +03:00 [INF] emirhanefegozpinar@gmail.com adresine ait 3 başvuru bulundu.
+2025-09-04 16:11:08.888 +03:00 [INF] Kullanıcıya ait başvurular listelendi. UserId: 1010, Toplam: 4
+2025-09-04 16:11:08.911 +03:00 [INF] Kullanıcıya ait 4 başvuru bulundu.
+2025-09-04 16:11:21.705 +03:00 [INF] Kullanıcının onaylı üyelikleri listelendi. UserId: 1010, Sayı: 3
+2025-09-04 16:11:35.220 +03:00 [INF] emirhanefegozpinar@gmail.com kullanıcısının onaylı başvuruları getirildi. Sayı: 2
+2025-09-04 16:13:23.912 +03:00 [INF] Kullanıcının onaylı üyelikleri listelendi. UserId: 1010, Sayı: 3
+2025-09-04 16:14:22.559 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = emirhanefegozpinar@gmail.com
+2025-09-04 16:14:22.563 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = emirhanefegozpinar@gmail.com
+2025-09-04 16:14:22.565 +03:00 [INF] emirhanefegozpinar@gmail.com adresine ait 3 başvuru bulundu.
+2025-09-04 16:14:22.566 +03:00 [INF] [CLAIM] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 1010
+2025-09-04 16:14:22.569 +03:00 [INF] [CLAIM] userId = 1010
+2025-09-04 16:14:22.570 +03:00 [INF] [CLAIM] firstName = Emirhan Efe
+2025-09-04 16:14:22.572 +03:00 [INF] [CLAIM] lastName = Gözpınar
+2025-09-04 16:14:22.573 +03:00 [INF] [CLAIM] http://schemas.microsoft.com/ws/2008/06/identity/claims/role = User
+2025-09-04 16:14:22.575 +03:00 [INF] [CLAIM] jti = c3655db3-5ae1-4bf8-832c-6ac380b1d91c
+2025-09-04 16:14:22.576 +03:00 [INF] [CLAIM] exp = 1756994754
+2025-09-04 16:14:22.578 +03:00 [INF] [CLAIM] iss = credit-calculator-api
+2025-09-04 16:14:22.579 +03:00 [INF] [CLAIM] aud = credit-calculator-client
+2025-09-04 16:14:22.580 +03:00 [INF] GetMyApplications çağrısı alındı. userId: 1010
+2025-09-04 16:14:22.587 +03:00 [INF] Kullanıcıya ait başvurular listelendi. UserId: 1010, Toplam: 4
+2025-09-04 16:14:22.615 +03:00 [INF] Kullanıcıya ait 4 başvuru bulundu.
+2025-09-04 16:16:50.939 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:16:52.256 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:16:52.266 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:16:52.900 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:16:54.102 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:16:54.112 +03:00 [INF] Filtreli kampanyalar getirildi. Banka: Garanti Bankası, KrediTipi: 1, Eşleşen: 1
+2025-09-04 16:16:58.063 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:16:58.071 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:17:01.452 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-04 16:17:02.113 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-04 16:17:02.128 +03:00 [INF] Filtreli kampanyalar getirildi. Banka: QNB FinansBank, KrediTipi: 0, Eşleşen: 1
+2025-09-04 16:17:06.700 +03:00 [INF] HesaplaVeKaydet işlemi başlatıldı.
+2025-09-04 16:17:06.728 +03:00 [INF] Kredi hesaplama başlatıldı: Tutar=87000, Vade=3, FaizOranı=10.99
+2025-09-04 16:17:06.734 +03:00 [INF] Hesaplama tamamlandı: AylıkTaksit=35595.35, ToplamOdeme=106786.04
+2025-09-04 16:17:06.739 +03:00 [INF] Veritabanına kayıt ediliyor: Tutar=87000, Vade=3, Faiz=10.99, AylıkTaksit=35595.35
+2025-09-04 16:17:06.806 +03:00 [INF] Kayıt başarıyla tamamlandı.
+2025-09-04 17:09:47.724 +03:00 [INF] Toplam 6 banka bulundu.

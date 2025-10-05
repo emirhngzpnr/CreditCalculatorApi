@@ -1,0 +1,34 @@
+2025-09-05 12:15:56.471 +03:00 [WRN] No store type was specified for the decimal property 'MaxKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.513 +03:00 [WRN] No store type was specified for the decimal property 'MinKrediTutar' on entity type 'Campaign'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.515 +03:00 [WRN] No store type was specified for the decimal property 'CreditAmount' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.517 +03:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'CreditApplication'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.518 +03:00 [WRN] No store type was specified for the decimal property 'AylikTaksit' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.520 +03:00 [WRN] No store type was specified for the decimal property 'FaizOrani' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.521 +03:00 [WRN] No store type was specified for the decimal property 'KrediTutari' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:15:56.527 +03:00 [WRN] No store type was specified for the decimal property 'ToplamOdeme' on entity type 'CreditCalculation'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-09-05 12:16:03.620 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 12:16:03.634 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 13:41:01.484 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 13:41:01.514 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 13:41:40.865 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 13:41:40.872 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 13:55:53.886 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 13:55:53.894 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 13:56:07.073 +03:00 [INF] HesaplaVeKaydet işlemi başlatıldı.
+2025-09-05 13:56:07.102 +03:00 [INF] Kredi hesaplama başlatıldı: Tutar=250000, Vade=4, FaizOranı=3.89
+2025-09-05 13:56:07.107 +03:00 [INF] Hesaplama tamamlandı: AylıkTaksit=68694.06, ToplamOdeme=274776.22
+2025-09-05 13:56:07.113 +03:00 [INF] Veritabanına kayıt ediliyor: Tutar=250000, Vade=4, Faiz=3.89, AylıkTaksit=68694.06
+2025-09-05 13:56:07.193 +03:00 [INF] Kayıt başarıyla tamamlandı.
+2025-09-05 13:56:41.279 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 13:56:46.170 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 13:56:46.172 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 14:08:33.279 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 14:08:33.287 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 15:13:12.329 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 15:13:12.372 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 15:16:17.731 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 15:16:17.783 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 15:20:13.914 +03:00 [INF] Toplam 4 kampanya bulundu.
+2025-09-05 15:20:13.930 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 16:03:44.903 +03:00 [INF] Toplam 6 banka bulundu.
+2025-09-05 16:03:44.921 +03:00 [INF] Toplam 4 kampanya bulundu.
