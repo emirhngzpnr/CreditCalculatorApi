@@ -1,0 +1,185 @@
+<div class="container py-5">
+  <div class="row">
+    <!-- Sol: Kredi Hesaplama Formu -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Kredi Hesaplama</h4>
+          <p class="card-description">Lütfen bilgileri girin</p>
+
+          <form [formGroup]="creditForm" (ngSubmit)="submitForm()">
+            <div class="form-group mb-3">
+              <label for="krediTutari">Kredi Tutarı</label>
+              <input
+                type="number"
+                formControlName="krediTutari"
+                class="form-control"
+                placeholder="Örn: 100000"
+              />
+              <div
+                class="text-danger mt-1"
+                *ngIf="submitted && creditForm.get('krediTutari')?.invalid"
+              >
+                <small
+                  *ngIf="creditForm.get('krediTutari')?.errors?.['required']"
+                  >Kredi tutarı zorunludur.</small
+                >
+                <small *ngIf="creditForm.get('krediTutari')?.errors?.['min']"
+                  >Minimum kredi tutarı 1.000 TL'dir.</small
+                >
+                <small *ngIf="creditForm.get('krediTutari')?.errors?.['max']"
+                  >Maksimum kredi tutarı 20.000.000 TL'dir.</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="vade">Vade (ay)</label>
+              <input
+                type="number"
+                formControlName="vade"
+                class="form-control"
+                placeholder="Örn: 36"
+              />
+              <div
+                class="text-danger mt-1"
+                *ngIf="submitted && creditForm.get('vade')?.invalid"
+              >
+                <small *ngIf="creditForm.get('vade')?.errors?.['required']"
+                  >Vade zorunludur.</small
+                >
+                <small *ngIf="creditForm.get('vade')?.errors?.['min']"
+                  >Minimum 1 ay olmalıdır.</small
+                >
+                <small *ngIf="creditForm.get('vade')?.errors?.['max']"
+                  >Maksimum 240 ay olabilir.</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="faizOrani">Faiz Oranı (%)</label>
+              <input
+                type="number"
+                formControlName="faizOrani"
+                step="0.01"
+                class="form-control"
+                placeholder="Örn: 1.89"
+              />
+              <div
+                class="text-danger mt-1"
+                *ngIf="submitted && creditForm.get('faizOrani')?.invalid"
+              >
+                <small *ngIf="creditForm.get('faizOrani')?.errors?.['required']"
+                  >Faiz oranı zorunludur.</small
+                >
+                <small *ngIf="creditForm.get('faizOrani')?.errors?.['min']"
+                  >Faiz oranı en az 0.01 olmalıdır.</small
+                >
+                <small *ngIf="creditForm.get('faizOrani')?.errors?.['max']">
+                  Faiz oranı en fazla %100 olabilir.
+                </small>
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-100" type="submit">Hesapla</button>
+            <button class="btn btn-outline-secondary w-100 mt-2" type="button" (click)="temizleFormu()">
+  Formu Temizle
+</button>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- SONUÇ: Hesaplama Tablosu -->
+      <div *ngIf="result" class="card mt-4 shadow-sm border-0">
+        <button class="btn btn-outline-secondary mt-3" (click)="exportToPDF()">
+          PDF olarak indir
+        </button>
+
+        <div class="card-body">
+          <h5 class="card-title text-success">Hesaplama Sonucu</h5>
+          <p>
+            <strong>Aylık Taksit:</strong>
+            {{ result.monthlyPayment | number : "1.2-2" }} TL
+          </p>
+          <p>
+            <strong>Toplam Ödeme:</strong>
+            {{ result.totalPayment | number : "1.2-2" }} TL
+          </p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped mt-3">
+              <thead class="table-light">
+                <tr>
+                  <th>Taksit No</th>
+                  <th>Taksit Tutarı</th>
+                  <th>Faiz</th>
+                  <th>Anapara</th>
+                  <th>Kalan Ana Para</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of result.installments">
+                  <td>{{ item.installmentNo }}</td>
+                  <td>{{ item.payment | number : "1.2-2" }} TL</td>
+                  <td>{{ item.interest | number : "1.2-2" }} TL</td>
+                  <td>{{ item.principal | number : "1.2-2" }} TL</td>
+                  <td>{{ item.remainingPrincipal | number : "1.2-2" }} TL</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sağ: Bankalar ve altına Kampanyalar -->
+    <div class="col-lg-4">
+      <!-- Bankalar Kartı -->
+      <div class="card shadow-sm border-0 mb-3">
+        <div class="card-header bg-danger text-white">Bankalar</div>
+        <div class="card-body p-0" style="height: 200px; overflow-y: auto">
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let banka of bankalar"
+              class="list-group-item list-group-item-action"
+              (click)="bankaSec(banka)"
+              style="cursor: pointer"
+            >
+              {{ banka.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Kampanyalar Kartı (Bankaların Altında) -->
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">Kampanyalar</div>
+        <div class="card-body p-0" style="max-height: 250px; overflow-y: auto">
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let kampanya of campaigns"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              (click)="kampanyayaGit(kampanya)"
+              style="cursor: pointer"
+            >
+              <div>
+                <strong>{{ kampanya.bankName }}</strong
+                ><br />
+                  <strong class="text-muted">{{ kampanya.description }}</strong>
+                    <br>
+                <small class="text-muted">Avantajlı {{ kampanya.creditType }}  Kredisi</small>
+              
+               
+              </div>
+              <span class="badge bg-success rounded-pill"
+                >%{{ kampanya.faizOrani }}</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-info text-white text-center">
+          <h5 class="mb-0">Kampanya Detayları</h5>
+        </div>
+        <div class="card-body">
+          <div *ngIf="kampanya">
+            <h6 class="text-muted">Banka</h6>
+            <p class="fw-bold">{{ kampanya.bankName }}</p>
+
+            <h6 class="text-muted">Kredi Türü</h6>
+            <p class="fw-bold">{{ kampanya.creditType }} Kredisi</p>
+
+            <h6 class="text-muted">Faiz Oranı</h6>
+            <p class="fw-bold text-success">%{{ kampanya.faizOrani }}</p>
+
+            <div class="d-grid mt-4">
+              <button class="btn btn-success" (click)="krediBasvurusunaGit()">
+                Bu Kampanyaya Başvur
+              </button>
+            </div>
+          </div>
+          
+
+          <div *ngIf="!kampanya">
+            <p class="text-danger text-center">Kampanya bulunamadı.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

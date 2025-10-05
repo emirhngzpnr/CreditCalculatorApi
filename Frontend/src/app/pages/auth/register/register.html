@@ -1,0 +1,104 @@
+<main class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px);">
+  <div class="card p-4 shadow-sm" style="max-width: 700px; width: 100%;">
+    <h3 class="text-center text-primary mb-4 fw-bold">Kayıt Ol</h3>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- Ad -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Ad</label>
+          <input type="text" formControlName="firstName" class="form-control"  placeholder="Örnek: Emirhan"
+                 [class.is-invalid]="submitted && registerForm.get('firstName')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('firstName')?.errors?.['required']">Ad boş olamaz.</div>
+            <div *ngIf="registerForm.get('firstName')?.errors?.['maxlength']">En fazla 50 karakter olabilir.</div>
+          </div>
+        </div>
+
+        <!-- Soyad -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Soyad</label>
+          <input type="text" formControlName="lastName" class="form-control"   placeholder="Örnek: Gözpınar"
+                 [class.is-invalid]="submitted && registerForm.get('lastName')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('lastName')?.errors?.['required']">Soyad boş olamaz.</div>
+            <div *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">En fazla 50 karakter olabilir.</div>
+            <div *ngIf="registerForm.get('birthDate')?.errors?.['overage']">75 yaşından büyük kullanıcılar kayıt olamaz.</div>
+          </div>
+        </div>
+
+        <!-- E-posta -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">E-posta</label>
+          <input type="email" formControlName="email" class="form-control"  placeholder="Örnek: emirhan@example.com"
+                 [class.is-invalid]="submitted && registerForm.get('email')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('email')?.errors?.['required']">E-posta boş olamaz.</div>
+            <div *ngIf="registerForm.get('email')?.errors?.['email']">Geçerli bir e-posta giriniz.</div>
+          </div>
+        </div>
+
+        <!-- Telefon -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Telefon</label>
+          <input type="text" formControlName="phoneNumber" class="form-control"  placeholder="Örnek: 5301234567"
+                 [class.is-invalid]="submitted && registerForm.get('phoneNumber')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">Telefon numarası boş olamaz.</div>
+            <div *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">5 ile başlamalı ve 10 haneli olmalıdır.</div>
+          </div>
+        </div>
+
+        <!-- Doğum Tarihi -->
+        <div class="col-md-6 mb-3">
+  <label class="form-label">Doğum Tarihi</label>
+  <input
+    type="date"
+    formControlName="birthDate"
+    class="form-control"
+     placeholder="GG/AA/YYYY"
+    [class.is-invalid]="submitted && registerForm.get('birthDate')?.invalid"
+  />
+  <div class="invalid-feedback">
+    <div *ngIf="registerForm.get('birthDate')?.errors?.['required']">Doğum tarihi boş olamaz.</div>
+    <div *ngIf="registerForm.get('birthDate')?.errors?.['underage']">18 yaşından küçükler kayıt olamaz.</div>
+  </div>
+</div>
+
+
+        <!-- T.C. Kimlik No -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">T.C. Kimlik No</label>
+          <input type="text" formControlName="identityNumber" class="form-control"  placeholder="Örnek: 12345678901" maxlength="11"
+                 [class.is-invalid]="submitted && registerForm.get('identityNumber')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('identityNumber')?.errors?.['required']">TC Kimlik No boş olamaz.</div>
+            <div *ngIf="registerForm.get('identityNumber')?.errors?.['minlength']">11 haneli olmalıdır.</div>
+            <div *ngIf="registerForm.get('identityNumber')?.errors?.['maxlength']">11 haneli olmalıdır.</div>
+          </div>
+        </div>
+
+        <!-- Şifre -->
+        <div class="col-12 mb-4">
+          <label class="form-label">Şifre</label>
+          <input type="password" formControlName="password" class="form-control" placeholder="Şifrenizi giriniz"
+                 [class.is-invalid]="submitted && registerForm.get('password')?.invalid" />
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('password')?.errors?.['required']">Şifre boş olamaz.</div>
+            <div *ngIf="registerForm.get('password')?.errors?.['minlength']">En az 6 karakter olmalıdır.</div>
+            <div *ngIf="registerForm.get('password')?.errors?.['pattern']">
+              En az bir büyük harf, bir küçük harf ve bir özel karakter (+, -, %, &) içermelidir.
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100 fw-semibold" >
+            Kayıt Ol
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>

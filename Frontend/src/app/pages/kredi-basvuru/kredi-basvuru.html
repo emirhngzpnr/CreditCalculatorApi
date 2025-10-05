@@ -1,0 +1,277 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="card-title text-center text-primary mb-4">
+            <i class="bi bi-credit-card-fill me-2"></i>
+            Kredi Başvurusu
+          </h3>
+
+          <form [formGroup]="basvuruForm" (ngSubmit)="submitForm()">
+            <!-- Ad Soyad -->
+            <div class="mb-3">
+              <label class="form-label">Ad Soyad</label>
+              <input
+                type="text"
+                formControlName="fullName"
+                class="form-control"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('fullName')?.invalid
+                "
+              />
+              <div class="invalid-feedback">Ad - Soyad zorunludur</div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('email')?.invalid
+                "
+              />
+              <div class="invalid-feedback">E-mail bilgisi zorunludur</div>
+            </div>
+            <!-- Telefon Numarası -->
+            <div class="mb-3">
+              <label class="form-label">Telefon Numarası</label>
+              <input
+                type="text"
+                formControlName="phoneNumber"
+                class="form-control"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('phoneNumber')?.invalid
+                "
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && basvuruForm.get('phoneNumber')?.errors"
+              >
+                <div
+                  *ngIf="basvuruForm.get('phoneNumber')?.errors?.['required']"
+                >
+                  Telefon numarası zorunludur
+                </div>
+                <div
+                  *ngIf="basvuruForm.get('phoneNumber')?.errors?.['pattern']"
+                >
+                  Geçerli bir telefon numarası giriniz (sadece rakam)
+                </div>
+              </div>
+            </div>
+
+            <!-- Banka Adı -->
+            <div class="mb-3">
+              <label class="form-label">Banka Adı</label>
+              <select
+                formControlName="bankName"
+                class="form-select"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('bankName')?.invalid
+                "
+              >
+                <option value="">Banka Seçiniz</option>
+                <option *ngFor="let banka of bankalar" [value]="banka.name">
+                  {{ banka.name }}
+                </option>
+              </select>
+              <div class="invalid-feedback">Banka Seçimi Zorunludur</div>
+            </div>
+
+            <!-- Kredi Tipi -->
+            <div class="mb-3">
+              <label class="form-label">Kredi Türü</label>
+              <select
+                formControlName="creditType"
+                class="form-select"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('creditType')?.invalid
+                "
+              >
+                <option value="">Seçiniz</option>
+                <option *ngFor="let c of creditTypes" [value]="c.value">
+                  {{ c.label }}
+                </option>
+              </select>
+
+              <div class="invalid-feedback">Kredi Tipi Zorunludur</div>
+            </div>
+
+            <!-- Kampanya -->
+
+            <label class="form-label">Kampanya</label>
+            <select
+              class="form-select"
+              formControlName="campaignId"
+              (change)="kampanyaDegisti($event)"
+              [class.is-invalid]="
+                submitted && basvuruForm.get('campaignId')?.invalid
+              "
+            >
+              <option value="">Kampanya Seçiniz</option>
+              <option
+                *ngFor="let kampanya of kampanyalar"
+                [value]="kampanya.id"
+              >
+                {{ kampanya.description }} - %{{ kampanya.faizOrani }}
+              </option>
+            </select>
+            <div class="invalid-feedback">Kampanya seçimi zorunludur</div>
+
+            <!-- Kampanya Bilgi Kutusu -->
+            <div *ngIf="selectedCampaign" class="alert alert-info small">
+              <strong>Kampanya Detay:</strong><br />
+              Faiz Oranı: %{{ selectedCampaign.faizOrani }}<br />
+              Tutar Aralığı: {{ selectedCampaign.minKrediTutar }} ₺ –
+              {{ selectedCampaign.maxKrediTutar }} ₺<br />
+              Vade Aralığı: {{ selectedCampaign.minVade }} –
+              {{ selectedCampaign.maxVade }} ay<br />
+              Geçerlilik:
+              {{ selectedCampaign.baslangicTarihi | date : "shortDate" }} -
+              {{ selectedCampaign.bitisTarihi | date : "shortDate" }}
+            </div>
+
+          <!-- Kredi Tutarı -->
+<div class="mb-3">
+  <label class="form-label">Kredi Tutarı</label>
+  <div class="d-flex gap-2 align-items-center">
+    <input
+      type="range"
+      class="form-range flex-grow-1"
+      formControlName="creditAmount"
+      [min]="selectedCampaign?.minKrediTutar"
+      [max]="selectedCampaign?.maxKrediTutar"
+      step="1000"
+    />
+    <input
+      type="number"
+      class="form-control"
+      style="width: 140px"
+      [min]="selectedCampaign?.minKrediTutar"
+      [max]="selectedCampaign?.maxKrediTutar"
+      step="1000"
+      [value]="basvuruForm.get('creditAmount')?.value"
+      (input)="syncCreditAmount($event)"
+    />
+  </div>
+  <small class="text-muted">Seçilen Tutar: {{ basvuruForm.value.creditAmount | number }} ₺</small>
+</div>
+
+
+            <!-- Vade Range -->
+
+        <!-- Vade -->
+<div class="mb-3">
+  <label class="form-label">Vade (Ay)</label>
+  <div class="d-flex gap-2 align-items-center">
+    <input
+      type="range"
+      class="form-range flex-grow-1"
+      formControlName="creditTerm"
+      [min]="selectedCampaign?.minVade"
+      [max]="selectedCampaign?.maxVade"
+      step="1"
+    />
+    <input
+      type="number"
+      class="form-control"
+      style="width: 100px"
+      [min]="selectedCampaign?.minVade"
+      [max]="selectedCampaign?.maxVade"
+      step="1"
+      [value]="basvuruForm.get('creditTerm')?.value"
+      (input)="syncCreditTerm($event)"
+    />
+  </div>
+  <small class="text-muted">Seçilen Vade: {{ basvuruForm.value.creditTerm }} Ay</small>
+</div>
+
+            <!-- Aylık Gelir -->
+            <div class="mb-3">
+              <label class="form-label">Aylık Gelir (₺)</label>
+              <input
+                type="number"
+                formControlName="monthlyIncome"
+                class="form-control"
+                [class.is-invalid]="
+                  submitted && basvuruForm.get('monthlyIncome')?.invalid
+                "
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && basvuruForm.get('monthlyIncome')?.errors"
+              >
+                <div
+                  *ngIf="basvuruForm.get('monthlyIncome')?.errors?.['required']"
+                >
+                  Aylık gelir zorunludur
+                </div>
+                <div *ngIf="basvuruForm.get('monthlyIncome')?.errors?.['min']">
+                  En az 1000 TL Olmalıdır
+                </div>
+                <div *ngIf="basvuruForm.get('monthlyIncome')?.errors?.['max']">
+                  En fazla 10.000.000 TL
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary w-100">Başvur</button>
+          </form>
+          <!-- HESAPLAMA VE TAKSİT PLANINI GÖSTERME -->
+<!-- Ödeme Planını Göster Butonu -->
+<div class="mt-4 text-center">
+  <button class="btn btn-outline-primary" type="button" (click)="odemePlaniniGoster()">
+    <i class="bi bi-calculator me-1"></i>
+    Ödeme Planını Göster
+  </button>
+</div>
+
+
+<!-- HESAPLAMA SONUCU -->
+<div *ngIf="hesaplamaSonucu" class="alert alert-info mt-4">
+  <h5 class="text-primary"> Hesaplama Sonucu</h5>
+  <p class="mb-0">
+     <strong>Aylık Taksit:</strong>
+    {{ hesaplamaSonucu.monthlyPayment | number:'1.2-2' }} TL <br />
+    <strong>Toplam Geri Ödeme:</strong>
+    {{ hesaplamaSonucu.totalPayment | number:'1.2-2' }} TL
+  </p>
+</div>
+
+<!-- TAKSİT TABLOSU -->
+  <div *ngIf="hesaplamaSonucu" class="card mt-4 shadow-sm border-0">
+  <h6 class="text-secondary">🧾 Taksit Tablosu</h6>
+  <div class="table-responsive">
+    <table class="table table-sm table-bordered table-striped mt-2">
+      <thead class="table-light">
+        <tr>
+          <th>Taksit No</th>
+          <th>Taksit Tutarı</th>
+          <th>Anapara</th>
+          <th>Faiz</th>
+          <th>Kalan Anapara</th>
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let t of hesaplamaSonucu.installments">
+          <td>{{ t.installmentNo }}</td>
+          <td>{{ t.payment | number:'1.2-2' }} TL</td>
+          <td>{{ t.principal | number:'1.2-2' }} TL</td>
+          <td>{{ t.interest | number:'1.2-2' }} TL</td>
+          <td>{{ t.remainingPrincipal | number:'1.2-2' }} TL</td>
+         </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

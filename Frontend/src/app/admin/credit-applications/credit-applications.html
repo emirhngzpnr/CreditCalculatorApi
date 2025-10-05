@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Kredi Başvuruları</h3>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Ad Soyad</th>
+        <th>Banka</th>
+        <th>Kredi Tutarı</th>
+        <th>Kredi Türü</th>
+        <th>Aylık Gelir</th> <!-- Yeni -->
+        <th>Risk Durumu</th> <!-- Yeni -->
+        <th>Kampanya Id</th>
+        <th>Başvuru Tarihi</th> <!-- Yeni -->
+        <th>Status</th
+          >
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let basvuru of basvurular">
+        <td>{{ basvuru.fullName }}</td>
+        <td>{{ basvuru.bankName }}</td>
+        <td>{{ basvuru.creditAmount | number }} ₺</td>
+        <td>{{ basvuru.creditType }}</td> <!-- Örn: 'İhtiyaç', 'Taşıt', 'Konut' -->
+        <td>{{ basvuru.monthlyIncome }}
+        <td>{{ basvuru.riskStatus }}</td> <!-- Örn: 'Düşük', 'Orta', 'Yüksek' -->
+        <td>{{basvuru.campaignId}}</td>
+        <td>{{ basvuru.recordTime| date: 'dd.MM.yyyy' }}</td> <!-- Tarih formatlı -->
+        <td>
+          <select [(ngModel)]="basvuru.status" class="form-select">
+            <option *ngFor="let s of statusOptions" [value]="s.value">{{ s.label }}</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="guncelleStatus(basvuru.id, basvuru.status)">
+            Güncelle
+          </button>
+            <button class="btn btn-danger btn-sm" (click)="silBasvuru(basvuru.id)">
+            Sil
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    

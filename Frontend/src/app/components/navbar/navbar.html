@@ -1,0 +1,63 @@
+<nav class="navbar">
+<div class="logo">
+  <a routerLink="/">
+   <img src="assets/vakifbank.png" alt="Vakifbank Logo" />
+
+
+  </a>
+</div>
+
+  <ul class="nav-links">
+    <li><a routerLink="/kredi-hesapla">Kredi Hesapla</a></li>
+    <li><a routerLink="/kredi-basvuru">Kredi Başvurusu</a></li>
+    <li><a routerLink="/bankalar">Bankalar</a></li>
+    <li><a routerLink="/musteri-ol">Banka Müşterisi Ol</a></li>
+    <li><a routerLink="/hakkimizda">Hakkımızda</a></li>
+  </ul>
+   <!-- Profil ikonu ve menüsü -->
+ <div class="dropdown">
+  <button
+    class="btn border-0 bg-light rounded-pill px-3 py-2 d-flex align-items-center gap-2 shadow-sm"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <i class="bi bi-person-circle fs-4 text-primary"></i>
+    <span class="fw-semibold text-dark">
+      <ng-container *ngIf="isLoggedIn; else guest"> {{ userName }} </ng-container>
+      <ng-template #guest>Profil</ng-template>
+    </span>
+    <i class="bi bi-caret-down-fill text-muted ms-1"></i>
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm rounded-3">
+    <ng-container *ngIf="isLoggedIn; else guestLinks">
+      <li>
+        <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/profil">
+          <i class="bi bi-person-lines-fill"></i> Profil
+        </a>
+      </li>
+      <li>
+        <button class="dropdown-item d-flex align-items-center gap-2" (click)="logout()">
+          <i class="bi bi-box-arrow-right"></i> Çıkış Yap
+        </button>
+      </li>
+    </ng-container>
+
+    <ng-template #guestLinks>
+      <li>
+        <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/login">
+          <i class="bi bi-box-arrow-in-right"></i> Giriş Yap
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/register">
+          <i class="bi bi-person-plus-fill"></i> Kayıt Ol
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+</div>
+
+</nav>
+

@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
+    <h4 class="text-center mb-3">E-posta Doğrulama</h4>
+
+    <div class="alert" [ngClass]="error ? 'alert-danger' : 'alert-success'">
+      {{ confirmationMessage }}
+    </div>
+
+    <div *ngIf="!error" class="text-center mt-3 text-secondary">
+      Sayfaya yönlendiriliyorsunuz... ({{ countdown }})
+    </div>
+
+    <div *ngIf="error" class="text-center mt-3">
+      <a routerLink="/login" class="btn btn-primary">Giriş Yap</a>
+    </div>
+  </div>
+</div>

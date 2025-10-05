@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Onaylanan Kredilerim</h2>
+
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div *ngIf="credits.length === 0 && !isLoading" class="alert alert-info">
+    Henüz onaylanmış kredi başvurunuz bulunmamaktadır.
+  </div>
+
+  <div *ngFor="let credit of credits" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ credit.bankName }}</h5>
+      <p class="card-text">
+        <strong>Kampanya:</strong> {{ credit.campaignName }}<br />
+        <strong>Kredi Tutarı:</strong> {{ credit.creditAmount | number: '1.2-2' }} TL<br />
+        <strong>Vade:</strong> {{ credit.creditTerm }} ay<br />
+        <strong>Aylık Gelir:</strong> {{ credit.monthlyIncome | number: '1.2-2' }} TL<br />
+        <strong>Başvuru Tarihi:</strong> {{ credit.recordTime | date:'d MMMM y':'':'tr' }} <br>
+        <strong>Durum:</strong>
+        <span class="badge bg-success">{{ getStatusLabel(credit.status) }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
