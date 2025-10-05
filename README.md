@@ -2,7 +2,7 @@ Credit Calculator API — Full Stack Project
 
 
 
-This project was developed by Emirhan Efe Gözpınar during his internship at VakıfBank RDC Partner (Dijital Teknopark, Ataşehir).
+This project was developed by Emirhan Efe Gözpınar during his internship at VakıfBank.
 
 
 
