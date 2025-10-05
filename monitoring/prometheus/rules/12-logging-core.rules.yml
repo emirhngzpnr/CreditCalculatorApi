@@ -1,0 +1,78 @@
+groups:
+
+  - name: log_core_10m
+    interval: 30s
+    rules:
+      - record: r:log:info:10m
+        expr: sum(increase(app_info_total[10m]))
+      - record: r:log:warning:10m
+        expr: sum(increase(app_warning_total[10m]))
+      - record: r:log:error:10m
+        expr: sum(increase(app_error_total[10m]))
+
+      - record: r:log:info:by_service:10m
+        expr: sum by (service) (increase(app_info_total[10m]))
+      - record: r:log:warning:by_service:10m
+        expr: sum by (service) (increase(app_warning_total[10m]))
+      - record: r:log:error:by_service:10m
+        expr: sum by (service) (increase(app_error_total[10m]))
+
+  - name: log_core_1d
+    interval: 1m
+    rules:
+      - record: r:log:info:1d
+        expr: sum(increase(app_info_total[1d]))
+      - record: r:log:warning:1d
+        expr: sum(increase(app_warning_total[1d]))
+      - record: r:log:error:1d
+        expr: sum(increase(app_error_total[1d]))
+
+      - record: r:log:info:by_service:1d
+        expr: sum by (service) (increase(app_info_total[1d]))
+      - record: r:log:warning:by_service:1d
+        expr: sum by (service) (increase(app_warning_total[1d]))
+      - record: r:log:error:by_service:1d
+        expr: sum by (service) (increase(app_error_total[1d]))
+
+ 
+      
+      - record: r:log:warning_rate_pct:5m
+        expr: >
+          100 *
+          sum(increase(app_warning_total[5m]))
+          / clamp_min(
+            sum(increase(app_info_total[5m])) +
+            sum(increase(app_warning_total[5m])) +
+            sum(increase(app_error_total[5m])),
+            1
+          )
+
+      
+      - record: r:log:warning_rate_pct:5m:by_service
+        expr: >
+          100 *
+          sum by (service) (increase(app_warning_total[5m]))
+          / clamp_min(
+            sum by (service) (increase(app_info_total[5m])) +
+            sum by (service) (increase(app_warning_total[5m])) +
+            sum by (service) (increase(app_error_total[5m])),
+            1
+          )
+
+  - name: log_core_5m
+    interval: 30s
+    rules:
+    - record: r:log:info:5m
+      expr: sum(increase(app_info_total[5m]))
+    - record: r:log:warning:5m
+      expr: sum(increase(app_warning_total[5m]))
+    - record: r:log:error:5m
+      expr: sum(increase(app_error_total[5m]))
+
+    - record: r:log:info:by_service:5m
+      expr: sum by (service) (increase(app_info_total[5m]))
+    - record: r:log:warning:by_service:5m
+      expr: sum by (service) (increase(app_warning_total[5m]))
+    - record: r:log:error:by_service:5m
+      expr: sum by (service) (increase(app_error_total[5m]))
+

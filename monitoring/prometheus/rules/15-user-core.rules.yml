@@ -1,0 +1,32 @@
+groups:
+ 
+
+  - name: user_core_10m
+    interval: 30s
+    rules:
+      - record: r:user:registered:10m
+        expr: sum(increase(user_registered_total[10m]))
+      - record: r:user:login:10m
+        expr: sum(increase(user_login_total[10m]))
+
+  - name: user_core_1d
+    interval: 1m
+    rules:
+     
+      - record: r:user:registered:1d
+        expr: sum(increase(user_registered_total[1d]))
+      - record: r:user:login:1d
+        expr: sum(increase(user_login_total[1d]))
+
+
+      - record: r:user:registered:by_source:1d
+        expr: sum by (source) (increase(user_registered_total[1d]))
+      
+
+  - name: user_core_rate_5m
+    interval: 30s
+    rules:
+      - record: r:user:registered:rate5m
+        expr: sum(rate(user_registered_total[5m]))
+      - record: r:user:login:rate5m
+        expr: sum(rate(user_login_total[5m]))

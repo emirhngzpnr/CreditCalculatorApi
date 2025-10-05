@@ -1,0 +1,7 @@
+
+rules:
+  - pattern: 'org\.apache\.ZookeeperService<name0=*, name1=*, name2=NumAliveConnections><>Value'
+    name: zookeeper_alive_connections
+    type: GAUGE
+  - pattern: 'org\.apache\.ZookeeperService<name0=*, name1=*, name2=PacketsReceived><>OneMinuteRate'
+    name: zookeeper_packets_received_per_sec

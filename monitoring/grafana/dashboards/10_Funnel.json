@@ -1,0 +1,113 @@
+{
+    "uid": "exec-funnel-010",
+    "title": "10_Funnel",
+    "tags": [ "business" ],
+    "schemaVersion": 39,
+    "version": 1,
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "panels": [
+        {
+            "id": 11,
+            "type": "stat",
+            "title": "Created (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:created:1d"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "none",
+                    "decimals": 0
+                },
+                "overrides": []
+            },
+            "options": {
+                "reduceOptions": {
+                    "calcs": [ "lastNotNull" ],
+                    "values": false
+                }
+            }
+        },
+        {
+            "id": 12,
+            "type": "stat",
+            "title": "Approved (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:approved:1d"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "none",
+                    "decimals": 0
+                },
+                "overrides": []
+            },
+            "options": {
+                "reduceOptions": {
+                    "calcs": [ "lastNotNull" ],
+                    "values": false
+                }
+            }
+        },
+        {
+            "id": 13,
+            "type": "stat",
+            "title": "Rejected (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:rejected:1d"
+                }
+            ],
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "none",
+                    "decimals": 0
+                },
+                "overrides": []
+            },
+            "options": {
+                "reduceOptions": {
+                    "calcs": [ "lastNotNull" ],
+                    "values": false
+                }
+            }
+        },
+        {
+            "id": 14,
+            "type": "barchart",
+            "title": "Kredi Turu Dagilimi (24h)",
+            "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+            },
+            "targets": [
+                {
+                    "refId": "A",
+                    "expr": "r:credit:created:by_credit_type:1d"
+                }
+            ],
+            "options": { "orientation": "horizontal" }
+        }
+    ]
+}
