@@ -1,0 +1,41 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand fw-bold text-white" href="#">Admin Paneli</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#adminNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="adminNavbar">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/kampanyalar" routerLinkActive="active">Kampanyalar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/bankalar" routerLinkActive="active">Bankalar</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/kredi-basvuru-listesi" routerLinkActive="active">Kredi Başvuruları</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/admin-customerapplication" routerLinkActive="active">Müşteri Başvuruları</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/logs" routerLinkActive="active">Sistem Kayıtları</a>
+      </li>
+    </ul>
+
+    <div class="d-flex">
+      <button class="btn btn-outline-light btn-sm" (click)="logout()">Çıkış Yap</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Alt sayfa içeriği -->
+<div class="p-4">
+  <router-outlet></router-outlet>
+</div>

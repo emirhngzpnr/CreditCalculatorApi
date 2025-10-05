@@ -1,0 +1,172 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow border-0">
+        <div class="card-body p-4">
+          <h4 class="text-center mb-4 text-primary">Müşteri Başvuru Formu</h4>
+
+          <form [formGroup]="basvuruForm" (ngSubmit)="submit()">
+            <!-- Ad -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="name"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    basvuruForm.get('name')?.invalid &&
+                    basvuruForm.get('name')?.touched
+                }"
+                id="nameInput"
+                placeholder="Adınız"
+              />
+              <label for="nameInput">Ad</label>
+              <div class="invalid-feedback">Ad zorunludur.</div>
+            </div>
+
+            <!-- Soyad -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="surname"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    basvuruForm.get('surname')?.invalid &&
+                    basvuruForm.get('surname')?.touched
+                }"
+                id="surnameInput"
+                placeholder="Soyadınız"
+              />
+              <label for="surnameInput">Soyad</label>
+              <div class="invalid-feedback">Soyad zorunludur.</div>
+            </div>
+
+            <!-- TC No -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="identityNumber"
+                type="text"
+                class="form-control"
+                id="tcInput"
+                placeholder="11 haneli TC Kimlik No"
+              />
+              <label for="tcInput">TC Kimlik No</label>
+            </div>
+            <div
+              *ngIf="
+                basvuruForm.get('identityNumber')?.touched &&
+                basvuruForm.get('identityNumber')?.invalid
+              "
+              class="text-danger small mb-2"
+            >
+              <div
+                *ngIf="basvuruForm.get('identityNumber')?.errors?.['required']"
+              >
+                TC Kimlik No gerekli.
+              </div>
+              <div
+                *ngIf="basvuruForm.get('identityNumber')?.errors?.['minlength']"
+              >
+                TC Kimlik No 11 haneli olmalıdır.
+              </div>
+            </div>
+
+            <!-- Telefon -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="phone"
+                type="tel"
+                class="form-control"
+                id="phoneInput"
+                placeholder="05XXXXXXXXX"
+              />
+              <label for="phoneInput">Telefon</label>
+            </div>
+            <div
+              *ngIf="
+                basvuruForm.get('phone')?.touched &&
+                basvuruForm.get('phone')?.invalid
+              "
+              class="text-danger small mb-2"
+            >
+              <div *ngIf="basvuruForm.get('phone')?.errors?.['required']">
+                Telefon numarası gerekli.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control"
+                id="emailInput"
+                placeholder="ornek@mail.com"
+              />
+              <label for="emailInput">E-Posta</label>
+            </div>
+            <div
+              *ngIf="
+                basvuruForm.get('email')?.touched &&
+                basvuruForm.get('email')?.invalid
+              "
+              class="text-danger small mb-2"
+            >
+              <div *ngIf="basvuruForm.get('email')?.errors?.['required']">
+                E-posta gerekli.
+              </div>
+              <div *ngIf="basvuruForm.get('email')?.errors?.['email']">
+                Geçerli bir e-posta giriniz.
+              </div>
+            </div>
+
+            <!-- Doğum Tarihi -->
+            <div class="form-floating mb-3">
+              <input
+                formControlName="birthDate"
+                type="date"
+                class="form-control"
+                id="dateInput"
+                placeholder="Doğum Tarihi"
+              />
+              <label for="dateInput">Doğum Tarihi</label>
+            </div>
+            <div
+              *ngIf="
+                basvuruForm.get('birthDate')?.touched &&
+                basvuruForm.get('birthDate')?.invalid
+              "
+              class="text-danger small mb-2"
+            >
+              <div *ngIf="basvuruForm.get('birthDate')?.errors?.['required']">
+                Doğum tarihi gerekli.
+              </div>
+              <div *ngIf="basvuruForm.get('birthDate')?.errors?.['minAge']">
+                18 yaşından küçük olamazsınız.
+              </div>
+            </div>
+
+            <!-- Banka Seçimi -->
+            <div class="form-floating mb-3">
+              <select
+                formControlName="bankName"
+                class="form-select"
+                id="bankSelect"
+              >
+                <option *ngFor="let banka of bankalar" [value]="banka">
+                  {{ banka }}
+                </option>
+              </select>
+              <label for="bankSelect">Banka</label>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 py-2 mt-2">
+              Başvuruyu Gönder
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

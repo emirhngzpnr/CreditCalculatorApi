@@ -1,0 +1,30 @@
+<div *ngIf="isLoading" class="text-center my-4">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<div *ngIf="!isLoading && memberships.length === 0" class="alert alert-info text-center">
+  Henüz onaylı banka üyeliğiniz bulunmamaktadır.
+</div>
+
+<div *ngIf="memberships.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
+  <div *ngFor="let member of memberships" class="col">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="card-title text-primary">
+          <i class="bi bi-bank2 me-2"></i>{{ member.bankName }}
+        </h5>
+        <hr />
+        <p class="card-text mb-1">
+          <strong>Ad Soyad:</strong> {{ member.name }} {{ member.surName }}
+        </p>
+        <p class="card-text mb-1">
+          <strong>Müşteri No:</strong> <span class="text-muted">{{ member.customerNumber }}</span>
+        </p>
+        <p class="card-text mb-1">
+          <strong>Üyelik Tarihi:</strong> {{ formatDate(member.applicationDate) }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

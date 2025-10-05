@@ -1,0 +1,38 @@
+<div *ngIf="isLoading" class="text-center my-4">
+  <div class="spinner-border" role="status"></div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="applications.length === 0 && !isLoading" class="alert alert-info">
+  Henüz bir kredi başvurunuz bulunmamaktadır.
+</div>
+
+<div *ngIf="applications.length > 0">
+  <div *ngFor="let app of applications" class="card mb-3 shadow-sm">
+    <div class="card-body">
+
+      <!-- Kampanya adı ve başvuru tarihi -->
+      <p class="card-text mb-2">
+        <strong>Banka:</strong> {{ app.bankName }}<br />
+       <strong>Başvuru Tarihi:</strong> {{ app.recordTime | date:'d MMMM y':'':'tr' }}
+
+      </p>
+
+     
+
+      <!-- Başvuru detayları -->
+      <p class="card-text">
+        <strong>Kredi Tutarı:</strong> {{ app.creditAmount | number:'1.2-2' }} TL<br />
+        <strong>Vade:</strong> {{ app.creditTerm }} ay<br />
+        <strong>Aylık Gelir:</strong> {{ app.monthlyIncome | number:'1.2-2' }} TL<br />
+
+        <strong>Durum:</strong> {{ getApplicationStatus(app.status) }}
+
+      </p>
+
+    </div>
+  </div>
+</div>

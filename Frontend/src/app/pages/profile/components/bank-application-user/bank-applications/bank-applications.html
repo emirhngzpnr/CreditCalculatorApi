@@ -1,0 +1,25 @@
+<div *ngIf="isLoading" class="text-center my-4">
+  <div class="spinner-border" role="status"></div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="applications.length === 0 && !isLoading" class="alert alert-info">
+  Henüz müşteri başvurusu yapılmamış.
+</div>
+
+<div *ngIf="applications.length > 0">
+  <div *ngFor="let app of applications" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ app.bankName }}</h5>
+      <p class="card-text">
+        <strong>Ad Soyad:</strong> {{ app.name }} {{ app.surName }}<br />
+        <strong>Başvuru Tarihi:</strong> {{ app.applicationDate | date:'d MMMM y':'':'tr' }} <br>
+          <strong>Durum:</strong> {{ getApplicationStatus(app.status) }} <br>
+        <strong>Müşteri Numarası:</strong> {{ app.customerNumber }}
+      </p>
+    </div>
+  </div>
+</div>

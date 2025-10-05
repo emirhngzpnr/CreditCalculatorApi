@@ -1,0 +1,16 @@
+td.description {
+  max-width: 200px;
+  word-break: break-word;
+  white-space: normal;
+  vertical-align: middle;
+}
+
+td.actions {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}

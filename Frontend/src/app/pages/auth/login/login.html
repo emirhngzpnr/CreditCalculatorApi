@@ -1,0 +1,48 @@
+<main class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px);">
+  <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
+    <h3 class="text-center text-primary mb-4 fw-bold">Giriş Yap</h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">E-posta</label>
+        <input type="email" formControlName="email" class="form-control" />
+      </div>
+
+     <div class="mb-3">
+  <label class="form-label">Şifre</label>
+  <div class="input-group">
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      formControlName="password"
+      class="form-control"
+      placeholder="Şifrenizi giriniz"
+      [class.is-invalid]="submitted && loginForm.get('password')?.invalid"
+    />
+    <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+    </button>
+  </div>
+
+  <div class="invalid-feedback d-block" *ngIf="submitted && loginForm.get('password')?.invalid">
+    <div *ngIf="loginForm.get('password')?.errors?.['required']">Şifre boş olamaz.</div>
+  </div>
+</div>
+
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 fw-semibold" [disabled]="loginForm.invalid">
+        Giriş Yap
+      </button>
+    </form>
+
+    <!-- ALT BAĞLANTILAR ORTALANMIŞ -->
+    <div class="text-center mt-3">
+      <a routerLink="/forgot-password" class="text-decoration-none me-3">Şifremi unuttum</a>
+      <a routerLink="/register" class="text-decoration-none">Kayıt Ol</a>
+    </div>
+  </div>
+</main>
+ 

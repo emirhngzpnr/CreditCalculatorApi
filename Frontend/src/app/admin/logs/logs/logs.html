@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Uygulama Logları</h3>
+
+  <form class="row g-2 align-items-end mb-3" (ngSubmit)="apply()" [formGroup]="form">
+    <div class="col-md-2">
+      <label class="form-label">Seviye</label>
+      <select class="form-select" formControlName="level">
+        <option value="">Hepsi</option>
+        <option value="Info">Info</option>
+        <option value="Warning">Warning</option>
+        <option value="Error">Error</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Arama</label>
+      <input class="form-control" placeholder="message / source / exception" formControlName="search">
+    </div>
+
+    <div class="col-md-2">
+      <label class="form-label">Başlangıç</label>
+      <input type="datetime-local" class="form-control" formControlName="from">
+    </div>
+
+    <div class="col-md-2">
+      <label class="form-label">Bitiş</label>
+      <input type="datetime-local" class="form-control" formControlName="to">
+    </div>
+
+    <div class="col-md-3 d-flex gap-2">
+      <button class="btn btn-primary" type="submit" [disabled]="loading">Uygula</button>
+      <button class="btn btn-outline-secondary" type="button" (click)="reset()">Sıfırla</button>
+    </div>
+  </form>
+
+  @if (loading) {
+    <div class="alert alert-info py-2">Yükleniyor…</div>
+  }
+
+  <div class="table-responsive">
+    <table class="table table-sm table-striped align-middle">
+      <thead>
+        <tr>
+          <th style="width:160px">Zaman</th>
+          <th style="width:100px">Seviye</th>
+          <th style="width:180px">Kaynak</th>
+          <th>Mesaj / Exception</th>
+          <th style="width:220px">Correlation</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (r of rows; track r.correlationId) {
+          <tr>
+            <td>{{ r.createdAtUtc | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td>
+             <span class="badge rounded-pill"
+      [ngClass]="badgeMap[r.logType] || 'text-bg-dark'">
+  {{ r.logType }}
+</span>
+
+            </td>
+            <td>{{ r.source || '-' }}</td>
+            <td>
+              <div class="fw-semibold">{{ r.message }}</div>
+              @if (r.exception) {
+                <div class="text-danger small">{{ r.exception }}</div>
+              }
+            </td>
+            <td class="small">
+              <code class="user-select-all">{{ r.correlationId || '-' }}</code>
+            </td>
+          </tr>
+        }
+
+        @if (!loading && rows.length === 0) {
+          <tr>
+            <td colspan="5" class="text-center text-muted py-4">Kayıt bulunamadı</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- basit sayfalama -->
+  <div class="d-flex justify-content-between align-items-center mt-2">
+    <div class="text-muted small">
+      Toplam: {{ total }} • Sayfa: {{ page }}/{{ totalPages() }}
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary btn-sm" (click)="prev()" [disabled]="page<=1">Önceki</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="next()" [disabled]="page>=totalPages()">Sonraki</button>
+    </div>
+  </div>
+</div>
