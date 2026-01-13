@@ -1,4 +1,4 @@
-Credit Calculator API — Full Stack Project
+Credit Calculator System — Full Stack Project
 
 
 
