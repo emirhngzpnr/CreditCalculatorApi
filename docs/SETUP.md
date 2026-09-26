@@ -53,6 +53,14 @@ SQL Server is **not** included in this Compose file; configure it separately. Th
 
 Create `CreditCalculatorApi/appsettings.Development.json` inside the backend directory. This file is ignored by Git. There is no checked-in `appsettings.example.json`; use this template:
 
+Generate a 32-byte encryption key and keep the resulting Base64 value outside source control:
+
+```powershell
+$keyBytes = New-Object byte[] 32
+[Security.Cryptography.RandomNumberGenerator]::Fill($keyBytes)
+[Convert]::ToBase64String($keyBytes)
+```
+
 ```json
 {
   "ConnectionStrings": {
@@ -62,6 +70,9 @@ Create `CreditCalculatorApi/appsettings.Development.json` inside the backend dir
     "Key": "<replace-with-a-random-secret-of-at-least-32-bytes>",
     "Issuer": "CreditCalculatorApi",
     "Audience": "CreditCalculatorFrontend"
+  },
+  "Encryption": {
+    "MasterKey": "<replace-with-the-generated-32-byte-base64-key>"
   },
   "Kafka": {
     "BootstrapServers": "localhost:9092",
@@ -97,7 +108,7 @@ Create `CreditCalculatorApi/appsettings.Development.json` inside the backend dir
 }
 ```
 
-Replace all placeholders. The SQL example uses Windows authentication; change it if your SQL Server uses another authentication method. JWT issuer and audience must remain consistent with the API's token configuration.
+Replace all placeholders. The SQL example uses Windows authentication; change it if your SQL Server uses another authentication method. JWT issuer and audience must remain consistent with the API's token configuration. Keep the encryption key stable for an existing database: changing it prevents the API from decrypting identity numbers written with the previous key. Migrate or recreate development data when rotating this key.
 
 These keys come from `Program.cs`, `KafkaOptions`, `MongoOptions`, `JwtService`, and `EmailService`. Environment variables such as `ConnectionStrings__DefaultConnection` can override JSON values. The EF design-time factory reads the JSON files and environment variables directly.
 
@@ -145,7 +156,7 @@ Use synthetic accounts and application data. Registration and notification flows
 
 ## 6. Optional monitoring
 
-Before starting [the monitoring Compose file](../monitoring/docker-compose.yml), replace its development Grafana/SMTP settings with your own local configuration and review the Grafana data bind mount. Use a fresh local Grafana data directory for a clean setup.
+Before starting [the monitoring Compose file](../monitoring/docker-compose.yml), copy `monitoring/.env.example` to `monitoring/.env`, fill in the Grafana admin password and SMTP credentials, and review the Grafana data bind mount. `monitoring/.env` is ignored by Git. Use a fresh local Grafana data directory for a clean setup.
 
 From the repository root:
 

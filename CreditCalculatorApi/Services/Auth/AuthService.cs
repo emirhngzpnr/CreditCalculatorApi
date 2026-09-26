@@ -16,19 +16,12 @@ namespace CreditCalculatorApi.Services.Auth
         private readonly IEmailService _emailService;
         private readonly ILogService _logService;
         private readonly ILogger<AuthService> _logger;
-        private readonly byte[] _masterKey;
 
-        public AuthService(IUserRepository userRepo, IJwtService jwtService, IConfiguration configuration, IEmailService emailservice, ILogService logService, ILogger<AuthService> logger)
+        public AuthService(IUserRepository userRepo, IJwtService jwtService, IEmailService emailservice, ILogService logService, ILogger<AuthService> logger)
         {
             _userRepo = userRepo;
             _jwtService = jwtService;
             _emailService = emailservice;
-           
-            var base64Key = configuration["Encryption:MasterKey"];
-            if (string.IsNullOrEmpty(base64Key))
-                throw new Exception("MasterKey bulunamadı (appsettings.json).");
-
-            _masterKey = Convert.FromBase64String(base64Key);
             _logService = logService;
             _logger = logger;
         }

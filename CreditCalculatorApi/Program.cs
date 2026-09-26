@@ -51,17 +51,6 @@ Log.Logger = new LoggerConfiguration()
 builder.Services.Configure<KafkaOptions>(builder.Configuration.GetSection("Kafka"));
 builder.Services.Configure<MongoOptions>(builder.Configuration.GetSection("Mongo"));
 builder.Services.AddSingleton<MongoReadDb>();
-// Program.cs - Build sonrasý bir kere çalýþtýr
-var sp = builder.Services.BuildServiceProvider();
-using (var scope = sp.CreateScope())
-{
-    var mongo = scope.ServiceProvider.GetRequiredService<MongoReadDb>();
-    var idx = new CreateIndexModel<AppLogEvent>(
-        Builders<AppLogEvent>.IndexKeys
-            .Ascending(x => x.LogType)
-            .Descending(x => x.CreatedAtUtc));
-    await mongo.Logs.Indexes.CreateOneAsync(idx);
-}
 
 builder.Services.AddHostedService<CreditCalculatorApi.BackgroundServices.CreditAppCreatedConsumer>();
 builder.Services.AddScoped<IPolicyEngine, PolicyEngine>();
@@ -236,6 +225,16 @@ context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Dink
 builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var mongo = scope.ServiceProvider.GetRequiredService<MongoReadDb>();
+    var index = new CreateIndexModel<AppLogEvent>(
+        Builders<AppLogEvent>.IndexKeys
+            .Ascending(x => x.LogType)
+            .Descending(x => x.CreatedAtUtc));
+    await mongo.Logs.Indexes.CreateOneAsync(index);
+}
 app.Use(async (ctx, next) =>
 {
     if (ctx.Request.Path.StartsWithSegments("/metrics"))
