@@ -65,6 +65,7 @@ using (var scope = sp.CreateScope())
 
 builder.Services.AddHostedService<CreditCalculatorApi.BackgroundServices.CreditAppCreatedConsumer>();
 builder.Services.AddScoped<IPolicyEngine, PolicyEngine>();
+builder.Services.AddSingleton<AesService>();
 
 builder.Services.AddHostedService<RiskEvaluationConsumer>();
 builder.Services.AddHostedService<DecisionConsumer>();
@@ -265,14 +266,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-using (var scope = app.Services.CreateScope())
-{
-    var service = scope.ServiceProvider.GetRequiredService<ICampaignService>();
-    await service.UpdateExpiredCampaignStatusesAsync();
-}
-using (var scope = app.Services.CreateScope())
-{
-    var service = scope.ServiceProvider.GetRequiredService<ICampaignService>();
-    await service.UpdateExpiredCampaignStatusesAsync();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var service = scope.ServiceProvider.GetRequiredService<ICampaignService>();
+//    await service.UpdateExpiredCampaignStatusesAsync();
+//}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var service = scope.ServiceProvider.GetRequiredService<ICampaignService>();
+//    await service.UpdateExpiredCampaignStatusesAsync();
+//}
 app.Run();

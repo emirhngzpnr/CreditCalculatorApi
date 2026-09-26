@@ -15,14 +15,16 @@ namespace CreditCalculatorApi.Services.Account
         private readonly IJwtService _jwtService;
         private readonly IEmailService _emailService;
         private readonly ILogService _logService;
+        private readonly AesService _aesService;
         private readonly ILogger<AccountService> _logger;
-        public AccountService(IUserRepository userRepo,IJwtService jwtService,IEmailService emailService, ILogService logService, ILogger<AccountService> logger)
+        public AccountService(IUserRepository userRepo,IJwtService jwtService,IEmailService emailService, ILogService logService, ILogger<AccountService> logger,AesService aesService)
         {
             _userRepo = userRepo;
             _jwtService = jwtService;
             _emailService = emailService;
             _logService = logService;
             _logger = logger;
+            _aesService = aesService;
         }
 
         public async Task RegisterAsync(RegisterRequestDto dto)
@@ -48,8 +50,8 @@ namespace CreditCalculatorApi.Services.Account
 
                
                 string passwordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
-                var (encryptedKey, encryptedIv) = AesService.GenerateEncryptedAesKey();
-                string encryptedTc = AesService.EncryptWithMasterKey(dto.IdentityNumber);
+                var (encryptedKey, encryptedIv) = _aesService.GenerateEncryptedAesKey();
+                string encryptedTc = _aesService.EncryptWithMasterKey(dto.IdentityNumber);
 
                 var user = new User
                 {

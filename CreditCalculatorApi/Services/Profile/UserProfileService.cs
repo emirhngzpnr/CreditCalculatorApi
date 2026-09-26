@@ -9,28 +9,27 @@ namespace CreditCalculatorApi.Services.Profile
     {
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly AesService _aesService;
 
-        public UserProfileService(IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
+        public UserProfileService(IUserRepository userRepository, IHttpContextAccessor httpContextAccessor,AesService aesService)
         {
             _userRepository = userRepository;
             _httpContextAccessor = httpContextAccessor;
+            _aesService= aesService;
         }
 
         public async Task<UserProfileResponseDto> GetCurrentUserProfileAsync()
         {
             var user = await GetAuthenticatedUserAsync();
 
-            //  Şifreli TC logu
-            Console.WriteLine(" Şifreli TC (Encrypted): " + user.IdentityNumberEncrypted);
 
             string decryptedTc = "";
             try
             {
                 //  Çözme girişimi
-                decryptedTc = AesService.DecryptWithMasterKey(user.IdentityNumberEncrypted);
+                decryptedTc = _aesService.DecryptWithMasterKey(user.IdentityNumberEncrypted);
 
-                //  Başarılıysa açık TC logu
-                Console.WriteLine(" Açık TC (Decrypted): " + decryptedTc);
+           
             }
             catch (Exception ex)
             {
