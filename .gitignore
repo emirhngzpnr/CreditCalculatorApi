@@ -40,3 +40,10 @@ appsettings.json
 appsettings.*.json
 .env
 .env.*
+!.env.example
+
+# Grafana runtime data
+monitoring/grafana/data/
+
+# Application logs
+CreditCalculatorApi/Logs/
